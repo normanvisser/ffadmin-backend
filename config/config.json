@@ -1,5 +1,6 @@
 {
   "development": {
+    "url": "postgres://lzzvcmvo:cjNfyqpPX6jZ4ggU5HaBG-PuTfWzS9Jf@surus.db.elephantsql.com/lzzvcmvo",
     "username": "root",
     "password": null,
     "database": "database_development",
