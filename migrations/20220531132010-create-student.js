@@ -23,7 +23,7 @@ module.exports = {
       gender: {
         type: Sequelize.STRING,
       },
-      BSN: {
+      bsn: {
         type: Sequelize.STRING,
       },
       dateOfBirth: {
@@ -36,6 +36,12 @@ module.exports = {
         type: Sequelize.DATE,
       },
       webCode: {
+        type: Sequelize.STRING,
+      },
+      extension: {
+        type: Sequelize.BOOLEAN,
+      },
+      status: {
         type: Sequelize.STRING,
       },
       createdAt: {

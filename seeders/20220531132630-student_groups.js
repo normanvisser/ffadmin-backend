@@ -11,6 +11,24 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          studentId: 2,
+          groupId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          studentId: 3,
+          groupId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          studentId: 4,
+          groupId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
