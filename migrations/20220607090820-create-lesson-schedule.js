@@ -1,24 +1,27 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("groups", {
+    await queryInterface.createTable("lessonSchedules", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING,
+      classId: {
+        type: Sequelize.INTEGER,
+        references: { model: "groups", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
-      level: {
-        type: Sequelize.STRING,
-      },
-      hours: {
+      day: {
         type: Sequelize.INTEGER,
       },
-      startDate: {
-        type: Sequelize.DATEONLY,
+      timeStart: {
+        type: Sequelize.INTEGER,
+      },
+      timeEnd: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("groups");
+    await queryInterface.dropTable("lessonSchedules");
   },
 };

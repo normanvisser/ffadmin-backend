@@ -6,12 +6,12 @@ module.exports = {
       "teachingMethods",
       [
         {
-          method: "Taal Compleet",
+          name: "Taal Compleet",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          method: "KNM",
+          name: "KNM",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

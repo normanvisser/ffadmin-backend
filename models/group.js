@@ -20,6 +20,8 @@ module.exports = (sequelize, DataTypes) => {
         through: "group_teachingMethods",
         foreignKey: "groupId",
       });
+      group.hasMany(models.lessonSchedule, { foreignKey: "classId" });
+      group.hasMany(models.user_group, { as: "user_groups_roles" });
     }
   }
   group.init(
@@ -27,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       level: DataTypes.STRING,
       hours: DataTypes.INTEGER,
+      startDate: DataTypes.DATEONLY,
     },
     {
       sequelize,

@@ -8,12 +8,14 @@ module.exports = {
         {
           userId: 1,
           groupId: 1,
+          role: "teacher",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           userId: 2,
           groupId: 1,
+          role: "co-teacher",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
