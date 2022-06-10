@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       date: DataTypes.DATEONLY,
       timeStart: DataTypes.TIME,
       timeEnd: DataTypes.TIME,
+      totalHours: DataTypes.FLOAT,
       attended: DataTypes.BOOLEAN,
       authorizedAbsence: DataTypes.BOOLEAN,
       absenceReason: DataTypes.STRING,

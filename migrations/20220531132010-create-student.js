@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       startingDate: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       webCode: {
         type: Sequelize.STRING,

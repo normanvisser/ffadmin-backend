@@ -28,4 +28,13 @@ router.post("/login", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get("/me", async (req, res, next) => {
+  try {
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+});
+
 module.exports = router;

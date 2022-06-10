@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       bsn: DataTypes.STRING,
       dateOfBirth: DataTypes.DATEONLY,
       contractSigned: DataTypes.BOOLEAN,
-      startingDate: DataTypes.DATE,
+      startingDate: DataTypes.DATEONLY,
       webCode: DataTypes.STRING,
       extension: DataTypes.BOOLEAN,
       status: DataTypes.STRING,

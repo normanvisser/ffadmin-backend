@@ -29,6 +29,9 @@ module.exports = {
       timeEnd: {
         type: Sequelize.TIME,
       },
+      totalHours: {
+        type: Sequelize.FLOAT,
+      },
       attended: {
         type: Sequelize.BOOLEAN,
       },
