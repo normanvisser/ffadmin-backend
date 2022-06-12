@@ -6,6 +6,7 @@ const studentsRouter = require("./routers/students");
 const groupsRouter = require("./routers/groups");
 const authRouter = require("./routers/auth");
 const userRouter = require("./routers/user");
+const attendanceRouter = require("./routers/attendances");
 
 app.use(cors());
 app.use(express.json());
@@ -16,9 +17,10 @@ app.get("/", (req, res) => {
   res.send("werkt");
 });
 
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 app.use("/students", studentsRouter);
 app.use("/groups", groupsRouter);
+app.use("/attendances", attendanceRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on :${PORT}`);

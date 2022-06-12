@@ -22,4 +22,14 @@ router.post("/users/new-user", async (req, res, next) => {
   }
 });
 
+router.get("/all", async (req, res, next) => {
+  try {
+    const allUsers = await User.findAll();
+    res.send(allUsers);
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
 module.exports = router;

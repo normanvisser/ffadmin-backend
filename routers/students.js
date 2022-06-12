@@ -4,6 +4,9 @@ const Student = require("../models").student;
 const Group = require("../models").group;
 const StudentAttendance = require("../models").studentAttendance;
 const User = require("../models").user;
+const Student_group = require("../models").student_group;
+
+const sequelize = require("sequelize");
 
 router.get("/all", async (req, res, next) => {
   try {
@@ -26,6 +29,34 @@ router.get("/all", async (req, res, next) => {
     next(e); // 500s
   }
 });
+
+// router.get("/specificStudent/:id", async (req, res, next) => {
+//   try {
+//     const studentId = req.params.id;
+//     const specificStudent = await Student.findByPk(studentId, {
+//       include: [
+//         { model: Group, attributes: ["level", "name"] },
+//         { model: StudentAttendance },
+//       ],
+//     });
+
+//     const totalHours = await StudentAttendance.findAll({
+//       where: { studentId: studentId },
+//       attributes: [
+//         "studentId",
+//         [sequelize.fn("sum", sequelize.col("totalHours"), "totalHours")],
+//       ],
+//     });
+
+//     if (!specificStudent)
+//       return res.status(404).send("No student with this id found");
+
+//     res.send(totalHours);
+//   } catch (error) {
+//     console.log(error.message);
+//     next(error);
+//   }
+// });
 
 router.get("/specificStudent/:id", async (req, res, next) => {
   try {
@@ -55,29 +86,47 @@ router.post("/newStudent", async (req, res, next) => {
       lastName,
       gender,
       dateOfBirth,
-      bsn,
-      ref,
       startingDate,
+      bsn,
+      groupId,
       contractSigned,
-      webCode,
       extension,
+      webCode,
+      ref,
       status,
     } = req.body;
+
     const newStudent = await Student.create({
       firstName,
       initials,
       lastName,
       gender,
       dateOfBirth,
-      bsn,
-      ref,
       startingDate,
+      bsn,
       contractSigned,
-      webCode,
       extension,
+      webCode,
+      ref,
       status,
     });
-    res.status(201).send("Successfully added new student", newStudent);
+
+    const newStudentData = await Student.findOne({
+      limit: 1,
+      order: [["createdAt", "DESC"]],
+      attributes: ["id"],
+    });
+
+    const newStudentId = newStudentData.dataValues.id;
+
+    const newStudent_group = await Student_group.create({
+      groupId,
+      studentId: newStudentId,
+    });
+
+    res
+      .status(201)
+      .send("Successfully added new student", newStudent, newStudent_group);
   } catch (e) {
     console.log(e.message);
     next(e);
