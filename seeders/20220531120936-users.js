@@ -15,15 +15,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          firstName: "test",
-          lastName: "test",
-          email: "test@test.com",
-          password: "test",
-          role: "Teacher",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
           firstName: "Christiano",
           lastName: "Ronaldo",
           email: "ronaldo@gmail.com",

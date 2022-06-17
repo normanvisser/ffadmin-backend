@@ -12,8 +12,20 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          groupId: 1,
+          groupId: 2,
           teachingMethodId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          groupId: 3,
+          teachingMethodId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          groupId: 4,
+          teachingMethodId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

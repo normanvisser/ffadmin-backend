@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
   lessonSchedule.init(
     {
       classId: DataTypes.INTEGER,
-      day: DataTypes.INTEGER,
-      timeStart: DataTypes.INTEGER,
-      timeEnd: DataTypes.INTEGER,
+      day: DataTypes.STRING,
+      timeStart: DataTypes.STRING,
+      timeEnd: DataTypes.STRING,
     },
     {
       sequelize,

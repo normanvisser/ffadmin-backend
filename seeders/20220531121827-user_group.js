@@ -19,6 +19,48 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          userId: 2,
+          groupId: 2,
+          role: "teacher",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 1,
+          groupId: 2,
+          role: "co-teacher",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 1,
+          groupId: 3,
+          role: "teacher",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 2,
+          groupId: 3,
+          role: "co-teacher",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 1,
+          groupId: 4,
+          role: "co-teacher",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          userId: 2,
+          groupId: 4,
+          role: "teacher",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );

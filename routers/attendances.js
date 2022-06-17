@@ -13,24 +13,49 @@ router.get("/all", async (req, res, next) => {
         {
           model: Student,
           attributes: ["firstName", "initials", "lastName"],
-          include: [
-            {
-              model: Group,
-              include: {
-                model: user_group,
-                as: "user_groups_roles",
-                include: [
-                  {
-                    model: User,
-                  },
-                ],
-              },
-            },
-          ],
+          include: [{ model: Group, include: [{ model: User }] }],
         },
       ],
     });
+
     res.send(allAttendances);
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
+router.post("/addNew", async (req, res, next) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      date,
+      startTime,
+      endTime,
+      totalHours,
+      attended,
+      authorizedAbsence,
+      absenceReason,
+    } = req.body;
+
+    // const student = await Student.findOne({
+    //   where: { firstName },
+    // });
+
+    // console.log(student);
+
+    const newAttendance = await Attendance.create({
+      firstName,
+      lastName,
+      date,
+      startTime,
+      endTime,
+      totalHours,
+      attended,
+      authorizedAbsence,
+      absenceReason,
+    });
   } catch (e) {
     console.log(e.message);
     next(e);

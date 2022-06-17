@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       webCode: DataTypes.STRING,
       extension: DataTypes.BOOLEAN,
       status: DataTypes.STRING,
+      imageUrl: DataTypes.STRING,
     },
     {
       sequelize,

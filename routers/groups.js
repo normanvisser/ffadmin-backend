@@ -43,7 +43,10 @@ router.get("/groupDetails/:id", async (req, res, next) => {
     const groupDetails = await Group.findByPk(groupId, {
       include: [
         { model: User, attributes: ["firstName", "lastName"] },
-        { model: Student, attributes: ["firstName", "lastName"] },
+        {
+          model: Student,
+          attributes: ["id", "firstName", "lastName", "imageUrl"],
+        },
         { model: TeachingMethod, attributes: ["name"] },
         { model: LessonSchedule },
       ],

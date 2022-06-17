@@ -15,13 +15,13 @@ module.exports = {
         onDelete: "CASCADE",
       },
       day: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       timeStart: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       timeEnd: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

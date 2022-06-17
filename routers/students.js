@@ -20,6 +20,7 @@ router.get("/all", async (req, res, next) => {
         "ref",
         "bsn",
         "status",
+        "imageUrl",
       ],
       include: [{ model: Group, attributes: ["level", "name"] }],
     });
@@ -27,6 +28,78 @@ router.get("/all", async (req, res, next) => {
   } catch (e) {
     console.log(e.message);
     next(e); // 500s
+  }
+});
+
+router.post("/edit", async (req, res, next) => {
+  try {
+    const {
+      firstName,
+      initials,
+      lastName,
+      gender,
+      dateOfBirth,
+      startingDate,
+      bsn,
+      groupId,
+      contractSigned,
+      extension,
+      webCode,
+      ref,
+      status,
+      id,
+    } = req.body;
+
+    const userToUpdate = await Student.findByPk(id);
+
+    const editedStudent = await userToUpdate.update({
+      firstName,
+      initials,
+      lastName,
+      gender,
+      dateOfBirth,
+      startingDate,
+      bsn,
+      groupId,
+      contractSigned,
+      extension,
+      webCode,
+      ref,
+      status,
+    });
+
+    const Student_groupToUpdate = await Student_group.findByPk(id);
+    const updateStudent_group = await Student_groupToUpdate.update({
+      studentId: id,
+      groupId: groupId,
+    });
+
+    const findStudent = await Student.findByPk(id, {
+      include: [
+        { model: Group, attributes: ["id", "level", "name"] },
+        { model: StudentAttendance },
+      ],
+    });
+
+    res.send(findStudent);
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+});
+
+router.delete("/delete/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const studentToDelete = await Student.findByPk(id);
+
+    studentToDelete.destroy();
+
+    res.send({ message: "Deletion succesfull", studentToDelete });
+  } catch (e) {
+    console.log(e);
+    next(e);
   }
 });
 
@@ -63,7 +136,7 @@ router.get("/specificStudent/:id", async (req, res, next) => {
     const studentId = req.params.id;
     const specificStudent = await Student.findByPk(studentId, {
       include: [
-        { model: Group, attributes: ["level", "name"] },
+        { model: Group, attributes: ["id", "level", "name"] },
         { model: StudentAttendance },
       ],
     });
@@ -94,6 +167,7 @@ router.post("/newStudent", async (req, res, next) => {
       webCode,
       ref,
       status,
+      imageUrl,
     } = req.body;
 
     const newStudent = await Student.create({
@@ -109,6 +183,7 @@ router.post("/newStudent", async (req, res, next) => {
       webCode,
       ref,
       status,
+      imageUrl,
     });
 
     const newStudentData = await Student.findOne({
@@ -124,9 +199,13 @@ router.post("/newStudent", async (req, res, next) => {
       studentId: newStudentId,
     });
 
-    res
-      .status(201)
-      .send("Successfully added new student", newStudent, newStudent_group);
+    const sendStudent = await Student.findOne({
+      limit: 1,
+      order: [["createdAt", "DESC"]],
+      include: { model: Group },
+    });
+
+    res.status(201).send(sendStudent);
   } catch (e) {
     console.log(e.message);
     next(e);
