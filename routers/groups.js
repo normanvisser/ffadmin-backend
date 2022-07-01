@@ -91,7 +91,20 @@ router.post("/addNew", async (req, res, next) => {
       },
     ]);
 
-    res.send(newGroup, newUser_group);
+    const infoToSend = await Group.findByPk(newGroupId, {
+      include: [
+        { model: TeachingMethod },
+        {
+          model: User_group,
+          as: "user_groups_roles",
+          include: [{ model: User }],
+        },
+      ],
+    });
+
+    console.log(infoToSend);
+
+    res.send(infoToSend);
   } catch (e) {
     console.log(e.message);
     next(e);
