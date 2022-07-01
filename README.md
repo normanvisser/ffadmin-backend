@@ -1,6 +1,6 @@
 # Fairfield Admin (backend)
 
-Fairfield Admin is an app specifically designed for a language school to keep track of students and classes [Frontend](https://github.com/normanvisser/ffadmin-frontend)
+Fairfield Admin is an app specifically designed for a language school to keep track of students and classes ([Frontend](https://github.com/normanvisser/ffadmin-frontend))
 
 - The backend is a REST api written in NodeJS
 - PostgreSQL and Sequelize are used for the database, models and seeds
